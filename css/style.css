@@ -1,0 +1,58 @@
+.container {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.btn-success {
+  margin: 1rem auto;
+}
+
+.nav {
+  background-color: #eee;
+}
+
+.nav-link:hover,
+.nav-link:active {
+  background-color: #ddd;
+}
+
+.todolist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.todolist-item {
+  position: relative;
+}
+
+.todo {
+  display: flex;
+  list-style: none;
+  padding: 1rem 0;
+}
+
+.todolist-item .btn-danger {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.modal {
+  /* display: block; */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-title {
+  width: 100%;
+  resize: none;
+}
+
+.modal-body {
+  display: flex;
+  justify-content: space-between;
+}
