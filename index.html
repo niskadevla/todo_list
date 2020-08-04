@@ -11,24 +11,29 @@
 <body>
   <div class="container">
     <h1 class="title">Todo list</h1>
-    <button id="newTask" class="btn btn-success" type="button" name="button">Add task</button>
+    <div class="align-center">
+      <button id="newTask" class="btn btn-success" type="button" name="button">Add task</button>
+    </div>
     <div id="wrapTodolist" class="wrap-todolist">
       <ul id="navTodoList" class="nav">
-        <li class="nav-item col-1">
+        <li class="nav-item col">
           <a class="nav-link" href="/" data-index="index">#</a>
         </li>
-        <li class="nav-item col-2">
+        <li class="nav-item col">
           <a class="nav-link" href="/" data-date="date">Date</a>
         </li>
-        <li class="nav-item col-2">
+        <li class="nav-item col">
           <a class="nav-link" href="/" data-expdate="expDate">Date expiration</a>
         </li>
-        <li class="nav-item col-7">
+        <li class="nav-item col">
           <a class="nav-link">Task</a>
+        </li>
+        <li class="nav-item col">
+          <a class="nav-link"></a>
         </li>
       </ul>
 
-      <ul id="todolist" class="todolist">        
+      <ul id="todolist" class="todolist">
       </ul>
     </div>
   </div>   <!--end container-->

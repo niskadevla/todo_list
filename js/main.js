@@ -103,11 +103,11 @@ function addTask() {
 newTask.addEventListener('click', addTask);
 
 function renderTodoList() {
-  if(!todos.length) {
-    navTodoList.style.display = 'none';
-  } else {
-    navTodoList.style.display = '';
-  }
+  // if(!todos.length) {
+  //   navTodoList.style.display = 'none';
+  // } else {
+  //   navTodoList.style.display = '';
+  // }
 
   // const ul = document.createElement('ul');
   // ul.classList.add('todolist-item');
@@ -119,12 +119,14 @@ function renderTodoList() {
     html += `
       <li class="todolist-item">
         <ul class="todo">
-          <li class="todo-item col-1" >${i + 1}</li>
-          <li class="todo-item col-2" >${date}</li>
-          <li class="todo-item col-2" >${expDate}</li>
-          <li class="todo-item col-7" >${title}</li>
+          <li class="todo-item col" >${i + 1}</li>
+          <li class="todo-item col" >${date}</li>
+          <li class="todo-item col" >${expDate}</li>
+          <li class="todo-item col" >${title}</li>
+          <li class="todo-item col" >
+            <button class="btn btn-danger" type="button" onclick="removeTodo(${id})">&times;</button>
+          </li>
         </ul>
-        <button class="btn btn-danger" type="button" onclick="removeTodo(${id})">&times;</button>
       </li>
     `
   });
