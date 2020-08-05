@@ -152,20 +152,22 @@ function sortTodoList(e) {
   target.classList.toggle('ascending');
 
   if (target.classList.contains('ascending')) {
-    if (target.dataset.date) {
-      sortAscendingByKey('date');
-    } else if (target.dataset.expdate) {
-      sortAscendingByKey('expdate');
-    } else if (target.dataset.index) {
-        todos.reverse();
+    switch (target.dataset.filter) {
+      case 'date': sortAscendingByKey('date');
+        break;
+      case 'expdate': sortAscendingByKey('expdate');
+        break;
+      case 'index': todos.reverse();
+        break;
     }
   } else {
-    if (target.dataset.date) {
-      sortDescendingByKey('date');
-    } else if (target.dataset.expdate) {
-      sortDescendingByKey('expdate');
-    } else if (target.dataset.index) {
-        todos.reverse();
+    switch (target.dataset.filter) {
+      case 'date': sortDescendingByKey('date');
+        break;
+      case 'expdate': sortDescendingByKey('expdate');
+        break;
+      case 'index': todos.reverse();
+        break;
     }
   }
 
