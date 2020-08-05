@@ -6,7 +6,7 @@ const todolist = document.getElementById('todolist');
 //   {
 //     id: new Date(),
 //     date: new Date(),
-//     expDate: new Date(),
+//     expdate: new Date(),
 //     title: 'Task1'
 //   }
 // ];
@@ -14,11 +14,15 @@ const todos = [];
 
 function dateToString(date) {
   let yy = date.getFullYear(),
-  mm = date.getMonth(),
-  dd = date.getDay();
+      mm = date.getMonth(),
+      dd = date.getDay();
 
-  mm = mm.length > 1 ? mm : '0' + mm;
-  dd = dd.length > 1 ? dd : '0' + dd;
+  mm = mm.length > 1
+    ? mm
+    : '0' + mm;
+  dd = dd.length > 1
+    ? dd
+    : '0' + dd;
 
   return `${yy}-${mm}-${dd}`;
 }
@@ -61,7 +65,7 @@ function addTask() {
     const target = e.target;
     const button = target.closest('button');
 
-    if(button && button.dataset.dismiss) {
+    if (button && button.dataset.dismiss) {
       div.style.display = 'none';
       div.remove();
     }
@@ -71,9 +75,10 @@ function addTask() {
     const target = e.target;
     const button = target.closest('button');
 
-    if(button && button.dataset.save) {
-      if(!getText()) {
+    if (button && button.dataset.save) {
+      if (!getText()) {
         alert('Enter a task plese');
+
         return
       }
 
@@ -83,7 +88,7 @@ function addTask() {
       todos.push({
           id: Date.now(),
           date: dateToString(new Date()),
-          expDate: getExpDate(),
+          expdate: getExpDate(),
           title: getText()
         });
     }
@@ -93,11 +98,13 @@ function addTask() {
 
   function getText() {
     const text = div.querySelector('textarea');
+
     return text.value
   }
 
   function getExpDate() {
     const input = div.querySelector('input[type="date"]');
+
     return input.value || dateToString(new Date());
   }
 }
@@ -105,25 +112,16 @@ function addTask() {
 newTask.addEventListener('click', addTask);
 
 function renderTodoList() {
-  // if(!todos.length) {
-  //   navTodoList.style.display = 'none';
-  // } else {
-  //   navTodoList.style.display = '';
-  // }
-
-  // const ul = document.createElement('ul');
-  // ul.classList.add('todolist-item');
-
   let html = '';
   todolist.innerHTML = '';
 
-  todos.forEach(({id, date, expDate, title}, i) => {
+  todos.forEach(({id, date, expdate, title}, i) => {
     html += `
       <li class="todolist-item">
         <ul class="todo">
           <li class="todo-item col" >${i + 1}</li>
           <li class="todo-item col" >${date}</li>
-          <li class="todo-item col" >${expDate}</li>
+          <li class="todo-item col" >${expdate}</li>
           <li class="todo-item col" >${title}</li>
           <li class="todo-item col" >
             <button class="btn btn-danger" type="button" onclick="removeTodo(${id})">&times;</button>
@@ -134,46 +132,52 @@ function renderTodoList() {
   });
 
   todolist.innerHTML = html;
-
-  // wrapTodolist.append(ul);
 }
 
 function removeTodo(id) {
-  console.log(todos);
-  for(let i = 0; i < todos.length; i++) {
-    if(todos[i].id === id) {
+  for (let i = 0; i < todos.length; i++) {
+    if (todos[i].id === id) {
       todos.splice(i,1);
+
       break;
     }
   }
-  console.log(todos);
+
   renderTodoList();
 }
 
 function sortTodoList(e) {
   e.preventDefault();
   const target = e.target;
-  target.classList.toggle('increase');
+  target.classList.toggle('ascending');
 
-  if(target.classList.contains('increase')) {
-    if(target.dataset.date) {
-      todos.sort((a, b) => new Date(b.date) - new Date(a.date));
-    } else if(target.dataset.expdate) {
-      todos.sort((a, b) => new Date(b.expDate) - new Date(a.expDate))
-    } else if(target.dataset.index) {
+  if (target.classList.contains('ascending')) {
+    if (target.dataset.date) {
+      sortAscendingByKey('date');
+    } else if (target.dataset.expdate) {
+      sortAscendingByKey('expdate');
+    } else if (target.dataset.index) {
         todos.reverse();
     }
   } else {
-    if(target.dataset.date) {
-      todos.sort((a, b) => new Date(a.date) - new Date(b.date));
-    } else if(target.dataset.expdate) {
-      todos.sort((a, b) => new Date(a.expDate) - new Date(b.expDate))
-    } else if(target.dataset.index) {
+    if (target.dataset.date) {
+      sortDescendingByKey('date');
+    } else if (target.dataset.expdate) {
+      sortDescendingByKey('expdate');
+    } else if (target.dataset.index) {
         todos.reverse();
     }
   }
 
   renderTodoList();
+}
+
+function sortAscendingByKey(key) {
+  todos.sort((a, b) => new Date(a[key]) - new Date(b[key]));
+}
+
+function sortDescendingByKey(key) {
+  todos.sort((a, b) => new Date(b[key]) - new Date(a[key]));
 }
 
 navTodoList.addEventListener('click', sortTodoList);
