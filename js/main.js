@@ -1,7 +1,9 @@
-const newTask = document.getElementById('newTask');
-const wrapTodolist = document.getElementById('wrapTodolist');
-const navTodoList = document.getElementById('navTodoList');
-const todolist = document.getElementById('todolist');
+import {TodoList} from './TodoList.js';
+window.todos = [];
+const todoList = new TodoList;
+// const {renderTodoList} = todoList;
+// console.dir(renderTodoList);
+
 // const todos = [
 //   {
 //     id: new Date(),
@@ -10,7 +12,16 @@ const todolist = document.getElementById('todolist');
 //     title: 'Task1'
 //   }
 // ];
-const todos = [];
+
+
+//Add Listeners
+(function() {
+  document.getElementById('newTask')
+    .addEventListener('click', addTask);
+
+  document.getElementById('navTodoList')
+    .addEventListener('click', sortTodoList);
+})();
 
 function dateToString(date) {
   let yy = date.getFullYear(),
@@ -27,12 +38,15 @@ function dateToString(date) {
   return `${yy}-${mm}-${dd}`;
 }
 
+
 function addTask() {
+  const wrapTodolist = document.getElementById('wrapTodolist');
   const div = document.createElement('div');
+  let html = '';
   div.style.display = 'block';
   div.classList.add('modal');
 
-  const html = `
+  html = `
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -93,7 +107,7 @@ function addTask() {
         });
     }
 
-    renderTodoList();
+    todoList.renderTodoList(todos);
   }
 
   function getText() {
@@ -109,43 +123,10 @@ function addTask() {
   }
 }
 
-newTask.addEventListener('click', addTask);
 
-function renderTodoList() {
-  let html = '';
-  todolist.innerHTML = '';
 
-  todos.forEach(({id, date, expdate, title}, i) => {
-    html += `
-      <li class="todolist-item">
-        <ul class="todo">
-          <li class="todo-item col" >${i + 1}</li>
-          <li class="todo-item col" >${date}</li>
-          <li class="todo-item col" >${expdate}</li>
-          <li class="todo-item col" >${title}</li>
-          <li class="todo-item col" >
-            <button class="btn btn-danger" type="button" onclick="removeTodo(${id})">&times;</button>
-          </li>
-        </ul>
-      </li>
-    `
-  });
 
-  todolist.innerHTML = html;
-}
-
-function removeTodo(id) {
-  for (let i = 0; i < todos.length; i++) {
-    if (todos[i].id === id) {
-      todos.splice(i,1);
-
-      break;
-    }
-  }
-
-  renderTodoList();
-}
-
+//All filters
 function sortTodoList(e) {
   e.preventDefault();
   const target = e.target;
@@ -171,7 +152,7 @@ function sortTodoList(e) {
     }
   }
 
-  renderTodoList();
+  todoList.renderTodoList(todos);
 }
 
 function sortAscendingByKey(key) {
@@ -182,6 +163,5 @@ function sortDescendingByKey(key) {
   todos.sort((a, b) => new Date(b[key]) - new Date(a[key]));
 }
 
-navTodoList.addEventListener('click', sortTodoList);
-
-renderTodoList();
+// var onRemove = todoList.removeTodo;
+// renderTodoList(window.todos);
