@@ -39,6 +39,8 @@ function addTask() {
         </div>
         <div class="modal-body">
           <p>Current date</p>
+          <p><b>${dateToString(new Date())}</b></p>
+          <p>Expiration date:</p>
           <input type="date" >
         </div>
         <div class="modal-footer">
