@@ -124,8 +124,6 @@ function addTask() {
 }
 
 
-
-
 //All filters
 function sortTodoList(e) {
   e.preventDefault();
@@ -134,20 +132,20 @@ function sortTodoList(e) {
 
   if (target.classList.contains('ascending')) {
     switch (target.dataset.filter) {
-      case 'date': sortAscendingByKey('date');
+      case 'date': sortAscendingByDate('date');
         break;
-      case 'expdate': sortAscendingByKey('expdate');
+      case 'expdate': sortAscendingByDate('expdate');
         break;
-      case 'index': todos.reverse();
+      case 'title': sortAscendingByText('title');
         break;
     }
   } else {
     switch (target.dataset.filter) {
-      case 'date': sortDescendingByKey('date');
+      case 'date': sortDescendingByDate('date');
         break;
-      case 'expdate': sortDescendingByKey('expdate');
+      case 'expdate': sortDescendingByDate('expdate');
         break;
-      case 'index': todos.reverse();
+      case 'title': sortDescendingByText('title');
         break;
     }
   }
@@ -155,13 +153,18 @@ function sortTodoList(e) {
   todoList.renderTodoList(todos);
 }
 
-function sortAscendingByKey(key) {
+function sortAscendingByDate(key) {
   todos.sort((a, b) => new Date(a[key]) - new Date(b[key]));
 }
 
-function sortDescendingByKey(key) {
+function sortDescendingByDate(key) {
   todos.sort((a, b) => new Date(b[key]) - new Date(a[key]));
 }
 
-// var onRemove = todoList.removeTodo;
-// renderTodoList(window.todos);
+function sortAscendingByText(key) {
+  todos.sort((a, b) => a[key] > b[key] ? 1 : -1);
+}
+
+function sortDescendingByText(key) {
+  todos.sort((a, b) => b[key] < a[key] ? -1 : 1);
+}
