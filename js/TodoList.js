@@ -23,7 +23,7 @@ class TodoList {
 
         break;
       }
-
+            
       target = target.parentElement;
     }
   }
