@@ -53,8 +53,7 @@ export class TodoList {
     this.$el.innerHTML = '';
 
     todos.forEach( (todo, i) => {
-      // const {id, date, expdate, title} = todo;
-      const {id} = todo;
+      const {id, date, expdate, title} = todo;
       // const button = document.createElement('button');
       // button.clasName = 'btn btn-danger';
       // button.type = 'button';
@@ -79,40 +78,69 @@ export class TodoList {
     //     </li>
     //   `;
     //
-      const item = fabric.createEl('li',
+      const $item = fabric.createEl('li',
                                    {className: ['todolist-item'],
                                     'id': `${id}`
                                    }
                                   );
 
-      const ul = fabric.createEl('ul',
+      const $ul = fabric.createEl('ul',
                                  {className: ['todo']}
                                 );
 
-      const button = fabric.createEl('button',
+      const $button = fabric.createEl('button',
                                      {className: ['btn', 'btn-danger'],
                                       type: 'button'
                                      },
                                      'x'
                                     );
 
-      button.addEventListener('click', (e) => this.removeTodo(e, id))
+      const fieldValues = [i + 1, date, expdate, title, $button];
 
-      item.append(ul);
+      $button.addEventListener('click', (e) => this.removeTodo(e, id))
 
-      for (let key in todo) {
-        ul.append( fabric.createEl('li',
+      $item.append($ul);
+
+      // for (let key in todo) {
+      //   ul.append( fabric.createEl('li',
+      //                              {className: ['todo-item', 'col']},
+      //                              todo[key]
+      //                             ))
+      // }
+
+      fieldValues.forEach(value => {
+        $ul.append( fabric.createEl('li',
                                    {className: ['todo-item', 'col']},
-                                   todo[key]
-                                  ))
-      }
+                                   value
+                                 ));
+      });
 
-      ul.append(fabric.createEl('li',
-                                {className: ['todo-item', 'col']},
-                                button
-                               ));
+      // $ul.append( fabric.createEl('li',
+      //                            {className: ['todo-item', 'col']},
+      //                            i + 1
+      //                          ));
+      //
+      // $ul.append( fabric.createEl('li',
+      //                            {className: ['todo-item', 'col']},
+      //                            date
+      //                          ));
+      //
+      // $ul.append( fabric.createEl('li',
+      //                            {className: ['todo-item', 'col']},
+      //                            expdate
+      //                          ));
+      //
+      // $ul.append( fabric.createEl('li',
+      //                            {className: ['todo-item', 'col']},
+      //                            title
+      //                          ));
+      //
+      // $ul.append(fabric.createEl('li',
+      //                           {className: ['todo-item', 'col']},
+      //                           $button
+      //                          ));
 
-      this.$el.append(item);
+      this.$el.append($item);
     });
     //
     // this.$el.innerHTML = html;
