@@ -3,7 +3,7 @@
 }
 
 .wrap-todolist {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
 
 .title {
@@ -15,17 +15,28 @@
   margin: 1rem auto;
 }
 
-.nav {
+/* .nav {
   background-color: #eee;
-}
+} */
 
 .nav-item {
+  background-color: #eee;
   padding: 0;
 }
 
-.nav-item + .nav-item,
-.todo-item + .todo-item {
-  border-left: 1px solid #ccc;
+.nav-item,
+.todo-item {
+  border: 1px solid #ccc;
+  border-right: none;
+}
+
+.nav-item:last-child,
+.todo-item:last-child {
+  border-right: 1px solid #ccc;
+}
+
+.todo-item {
+  border-top: none;
 }
 
 .nav-link:hover,
