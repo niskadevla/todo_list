@@ -1,6 +1,6 @@
 import {TodoList} from './TodoList.js';
 window.todos = [];
-const todoList = new TodoList;
+const todoList = new TodoList('#todolist');
 // const {renderTodoList} = todoList;
 // console.dir(renderTodoList);
 

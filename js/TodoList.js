@@ -1,7 +1,11 @@
+import {Fabric} from './Fabric.js';
+const fabric = new Fabric();
+
 export class TodoList {
-  constructor() {
+  constructor(selector) {
     // this.todos = todos;
     // this.removeTodo = this.removeTodo.bind(this);
+    this.$el = document.querySelector(selector);
   }
 
   removeTodo(id) {
@@ -16,16 +20,7 @@ export class TodoList {
     this.renderTodoList(todos);
   }
 
-  createEl(el = '', classes = '', child) {
-    const $el = document.createElement(el);
-    $el.className = classes;
 
-    if (child) {
-      $el.append(child);
-    }
-
-    return $el;
-  }
 
   // addEvent() {
   //   // ${self.removeTodo(id)}
@@ -41,11 +36,11 @@ export class TodoList {
       return
     }
 
-    const todolist = document.getElementById('todolist');
-    let html = '';
-    const self = this;
+    // const todolist = document.getElementById('todolist');
+    // let html = '';
+    // const self = this;
     // const {todos} = this;
-    todolist.innerHTML = '';
+    this.$el.innerHTML = '';
 
     todos.forEach( (todo, i) => {
       const {id, date, expdate, title} = todo;
@@ -73,31 +68,40 @@ export class TodoList {
     //     </li>
     //   `;
     //
-      const item = this.createEl('li', 'todolist-item');
-      todolist.append(item);
-      const ul = this.createEl('ul', 'todo');
+      const item = fabric.createEl('li',
+                                   {className: ['todolist-item']}
+                                  );
+
+      const ul = fabric.createEl('ul',
+                                 {className: ['todo']}
+                                );
+
+      const button = fabric.createEl('button',
+                                     {className: ['btn', 'btn-danger'],
+                                      type: 'button'
+                                     },
+                                     'x'
+                                    );
+
+      button.addEventListener('click', () => this.removeTodo(id))
       item.append(ul);
 
-      for(let key in todo) {
-        ul.append( this.createEl('li', 'todo-item col', todo[key]) )
+      for (let key in todo) {
+        ul.append( fabric.createEl('li',
+                                   {className: ['todo-item', 'col']},
+                                   todo[key]
+                                  ))
       }
 
-      // Object.keys(todo).forEach(text => {
-      //   ul.append( this.createEl('li', 'todo-item col', text) )
-      // })
-      const button = this.createEl('button',
-                              'btn btn-danger',
-                              'x');
+      ul.append(fabric.createEl('li',
+                                {className: ['todo-item', 'col']},
+                                button
+                               ));
 
-      ul.append(this.createEl('li',
-                              'todo-item col',
-                              button
-                ));
-
-      todolist.append(item);
+      this.$el.append(item);
     });
     //
-    // todolist.innerHTML = html;
+    // this.$el.innerHTML = html;
 
 
 
