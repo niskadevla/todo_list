@@ -1,8 +1,8 @@
 import {Fabric} from './Fabric.js';
 const fabric = new Fabric();
 
-export class TodoList {
-  constructor(selector) {    
+class TodoList {
+  constructor(selector) {
     this.$el = document.querySelector(selector);
   }
 
@@ -72,3 +72,5 @@ export class TodoList {
     });
   }
 }
+
+export {TodoList}

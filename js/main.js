@@ -1,6 +1,8 @@
 import {TodoList} from './TodoList.js';
+import {NavTodoList} from './NavTodoList.js';
 window.todos = [];
 const todoList = new TodoList('#todolist');
+const navTodoList = new NavTodoList();
 // const {renderTodoList} = todoList;
 // console.dir(renderTodoList);
 
@@ -20,7 +22,10 @@ const todoList = new TodoList('#todolist');
     .addEventListener('click', addTask);
 
   document.getElementById('navTodoList')
-    .addEventListener('click', sortTodoList);
+    .addEventListener('click', (e) => {
+      navTodoList.sortTodoList(e);
+      todoList.renderTodoList(todos);
+    })
 })();
 
 function dateToString(date) {
@@ -121,50 +126,4 @@ function addTask() {
 
     return input.value || dateToString(new Date());
   }
-}
-
-
-//All filters
-function sortTodoList(e) {
-  e.preventDefault();
-  const target = e.target;
-  target.classList.toggle('ascending');
-
-  if (target.classList.contains('ascending')) {
-    switch (target.dataset.filter) {
-      case 'date': sortAscendingByDate('date');
-        break;
-      case 'expdate': sortAscendingByDate('expdate');
-        break;
-      case 'title': sortAscendingByText('title');
-        break;
-    }
-  } else {
-    switch (target.dataset.filter) {
-      case 'date': sortDescendingByDate('date');
-        break;
-      case 'expdate': sortDescendingByDate('expdate');
-        break;
-      case 'title': sortDescendingByText('title');
-        break;
-    }
-  }
-
-  todoList.renderTodoList(todos);
-}
-
-function sortAscendingByDate(key) {
-  todos.sort((a, b) => new Date(a[key]) - new Date(b[key]));
-}
-
-function sortDescendingByDate(key) {
-  todos.sort((a, b) => new Date(b[key]) - new Date(a[key]));
-}
-
-function sortAscendingByText(key) {
-  todos.sort((a, b) => a[key] > b[key] ? 1 : -1);
-}
-
-function sortDescendingByText(key) {
-  todos.sort((a, b) => b[key] < a[key] ? -1 : 1);
 }
