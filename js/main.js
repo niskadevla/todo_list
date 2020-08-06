@@ -30,8 +30,8 @@ const navTodoList = new NavTodoList();
 
 function dateToString(date) {
   let yy = date.getFullYear(),
-      mm = date.getMonth(),
-      dd = date.getDay();
+      mm = date.getMonth() + 1,
+      dd = date.getDate();
 
   mm = mm.length > 1
     ? mm
