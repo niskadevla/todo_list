@@ -39,20 +39,25 @@ class Modal {
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <textarea class="modal-title" placeholder="Your text"></textarea>
+            <h3 class="modal-title">Create todo</h3>
             <button type="button" class="close" data-dismiss="modal">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Current date</p>
-            <p><b>${this.#dateToString(new Date())}</b></p>
-            <p>Expiration date:</p>
-            <input type="date" >
+            <input type="text" class="modal-input" placeholder="Your text">
+            <div class="modal-group">
+              <p>Current date:</p>
+              <p><b>${this.#dateToString(new Date())}</b></p>
+            </div>
+            <div class="modal-group">
+              <p>Expiration date:</p>
+              <input type="date" >
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-save="modal">Save changes</button>
+            <button type="button" class="btn btn-primary" data-save="modal">Save</button>
           </div>
         </div>
       </div>
@@ -103,7 +108,7 @@ class Modal {
   }
 
   _getText() {
-    const text = this._div.querySelector('textarea');
+    const text = this._div.querySelector('input[type="text"]');
 
     return text.value
   }
