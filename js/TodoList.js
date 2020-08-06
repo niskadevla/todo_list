@@ -8,7 +8,9 @@ export class TodoList {
     this.$el = document.querySelector(selector);
   }
 
-  removeTodo(id) {
+  removeTodo(e, id) {
+    let target = e.target;
+
     for (let i = 0; i < todos.length; i++) {
       if (todos[i].id === id) {
         todos.splice(i,1);
@@ -17,7 +19,15 @@ export class TodoList {
       }
     }
 
-    this.renderTodoList(todos);
+    while (this.$el !== target) {
+      if (+target.id === id) {
+        target.remove();
+
+        break;
+      }
+
+      target = target.parentElement;
+    }
   }
 
 
@@ -43,7 +53,8 @@ export class TodoList {
     this.$el.innerHTML = '';
 
     todos.forEach( (todo, i) => {
-      const {id, date, expdate, title} = todo;
+      // const {id, date, expdate, title} = todo;
+      const {id} = todo;
       // const button = document.createElement('button');
       // button.clasName = 'btn btn-danger';
       // button.type = 'button';
@@ -69,7 +80,9 @@ export class TodoList {
     //   `;
     //
       const item = fabric.createEl('li',
-                                   {className: ['todolist-item']}
+                                   {className: ['todolist-item'],
+                                    'id': `${id}`
+                                   }
                                   );
 
       const ul = fabric.createEl('ul',
@@ -83,7 +96,8 @@ export class TodoList {
                                      'x'
                                     );
 
-      button.addEventListener('click', () => this.removeTodo(id))
+      button.addEventListener('click', (e) => this.removeTodo(e, id))
+
       item.append(ul);
 
       for (let key in todo) {
