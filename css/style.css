@@ -1,19 +1,14 @@
-.container {
-  /* text-align: center; */
-}
-
 .align-center {
   text-align: center;
+}
+
+.wrap-todolist {
+  border: 1px solid #ccc;
 }
 
 .title {
   text-align: center;
   padding: 2rem 0;
-}
-
-.todolist {
-  border: 1px solid #ccc;
-  border-top: none;
 }
 
 .btn-success {
@@ -41,6 +36,7 @@
 .todolist {
   list-style: none;
   padding-left: 0;
+  margin: 0;
 }
 
 .todolist-item {
@@ -57,15 +53,7 @@
   padding: 1rem 0  1rem 1rem;
 }
 
-/* .todolist-item .btn-danger {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-} */
-
 .modal {
-  /* display: block; */
   background-color: rgba(0, 0, 0, 0.5);
 }
 
