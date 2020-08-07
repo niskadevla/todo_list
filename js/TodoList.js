@@ -9,10 +9,12 @@ class TodoList {
   removeTodo(e, id) {
     let target = e.target;
 
-    const i = todos.findIndex(todo => todo.id === id);
-    if (i !== undefined) {
-      todos.splice(i,1);
+    const i = todos.findIndex(todo => todo.id === id);    
+    if (i === undefined) {
+      return
     }
+
+    todos.splice(i,1);
 
     while (this.$el !== target) {
       if (+target.id === id) {
