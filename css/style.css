@@ -60,7 +60,10 @@
 }
 
 .todo-item {
+  display: flex;
+  align-items: center;
   border-top: none;
+  padding: .5rem;
 }
 
 .nav-link,
@@ -87,10 +90,6 @@
   display: flex;
   list-style: none;
   padding: 0;
-}
-
-.todo-item {
-  padding: 1rem 0  1rem 1rem;
 }
 
 .modal {
