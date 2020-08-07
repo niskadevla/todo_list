@@ -12,10 +12,6 @@
   justify-content: center;
 }
 
-.wrap-todolist {
-  /* border: 1px solid #ccc; */
-}
-
 .title {
   text-align: center;
   padding: 2rem 0;
@@ -30,10 +26,6 @@
   margin: 1rem;
   font-weight: bold;
 }
-
-/* .nav {
-  background-color: #eee;
-} */
 
 .nav-item {
   background-color: #eee;
@@ -57,7 +49,7 @@
 .nav-item:last-child,
 .todo-item:last-child {
   flex: 0 1 5%;
-  max-width: 5%; 
+  max-width: 5%;
   border-right: 1px solid #ccc;
   justify-content: center;
   text-align: center;
@@ -108,12 +100,10 @@
 .modal-body {
   display: flex;
   flex-flow: column nowrap;
-  /* justify-content: space-between; */
 }
 
 .modal-group {
   display: flex;
-  /* justify-content: space-around; */
   align-items: center;
   margin: 1rem 0;
 }

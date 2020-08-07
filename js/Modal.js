@@ -9,6 +9,7 @@ export class Modal {
     this._closeModal = this._closeModal.bind(this);
     this._getText = this._getText.bind(this);
     this._getExpDate = this._getExpDate.bind(this);
+    this.renderModal = this.renderModal.bind(this);
   }
 
   #dateToString(date) {

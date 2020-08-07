@@ -8,9 +8,7 @@ const modal = new Modal('#wrapTodolist');
 
 function addListeners() {
   document.getElementById('newTask')
-    .addEventListener('click', () => {
-      modal.renderModal();
-    });
+    .addEventListener('click', modal.renderModal);
 
   document.getElementById('navTodoList')
     .addEventListener('click', e => {
