@@ -1,11 +1,8 @@
-class Fabric {
-  // constructor() {
-  //
-  // }
+export class FabricComponent {
 
   createEl(el = '', props = {}, child) {
     const $el = document.createElement(el);
-    // $el.className = classes;
+    
     for (let prop in props) {
       if (typeof props[prop] === 'string') {
         $el[prop] = props[prop]
@@ -21,12 +18,3 @@ class Fabric {
     return $el;
   }
 }
-
-export {Fabric}
-
-/*
-props = {
-  className: [str, str], //Array of strings
-  type: '' // String
-}
-*/

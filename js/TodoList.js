@@ -1,5 +1,5 @@
-import {Fabric} from './Fabric.js';
-const fabric = new Fabric();
+import {FabricComponent} from './FabricComponent.js';
+const fabricComponent = new FabricComponent();
 
 class TodoList {
   constructor(selector) {
@@ -23,7 +23,7 @@ class TodoList {
 
         break;
       }
-            
+
       target = target.parentElement;
     }
   }
@@ -38,17 +38,17 @@ class TodoList {
     todos.forEach( (todo, i) => {
       const {id, date, expdate, title} = todo;
 
-      const $item = fabric.createEl('li',
+      const $item = fabricComponent.createEl('li',
                                    {className: ['todolist-item'],
                                     'id': `${id}`
                                    }
                                   );
 
-      const $ul = fabric.createEl('ul',
+      const $ul = fabricComponent.createEl('ul',
                                  {className: ['todo']}
                                 );
 
-      const $button = fabric.createEl('button',
+      const $button = fabricComponent.createEl('button',
                                      {className: ['btn', 'btn-danger'],
                                       type: 'button'
                                      },
@@ -62,7 +62,7 @@ class TodoList {
       $item.append($ul);
 
       fieldValues.forEach(value => {
-        $ul.append( fabric.createEl('li',
+        $ul.append( fabricComponent.createEl('li',
                                    {className: ['todo-item', 'col']},
                                    value
                                  ));
