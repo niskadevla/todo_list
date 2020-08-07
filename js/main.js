@@ -6,27 +6,17 @@ const todoList = new TodoList('#todolist');
 const navTodoList = new NavTodoList();
 const modal = new Modal('#wrapTodolist');
 
-// const todos = [
-//   {
-//     id: new Date(),
-//     date: new Date(),
-//     expdate: new Date(),
-//     title: 'Task1'
-//   }
-// ];
-
-
-//Add Listeners
-(function() {
+function addListeners() {
   document.getElementById('newTask')
     .addEventListener('click', () => {
       modal.renderModal();
-      // todoList.renderTodoList(todos);
     });
 
   document.getElementById('navTodoList')
     .addEventListener('click', (e) => {
       navTodoList.sortTodoList(e);
       todoList.renderTodoList(todos);
-    })
-})();
+    });
+}
+
+addListeners();
