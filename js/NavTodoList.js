@@ -1,8 +1,5 @@
-class NavTodoList {
-  constructor() {
+export class NavTodoList {  
 
-  }
-  //All filters
   sortTodoList(e) {
     e.preventDefault();
     const target = e.target;
@@ -46,5 +43,3 @@ class NavTodoList {
   }
 
 }
-
-export {NavTodoList}

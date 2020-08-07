@@ -1,3 +1,12 @@
+.active {
+  background-color: #007bff;
+}
+
+.done {
+  background-color: #dedede;
+  text-decoration: line-through;
+}
+
 .header-todolist {
   display: flex;
   justify-content: center;

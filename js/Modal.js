@@ -1,7 +1,7 @@
 import {TodoList} from './TodoList.js';
 const todoList = new TodoList('#todolist');
 
-class Modal {
+export class Modal {
   constructor(selector) {
     this.$el = document.querySelector(selector);
     this._div = document.createElement('div');
@@ -29,7 +29,7 @@ class Modal {
   }
 
 
-  renderModal() {    
+  renderModal() {
     let html = '';
     this._div.innerHTML = '';
     this._div.style.display = 'block';
@@ -123,5 +123,3 @@ class Modal {
   }
 
 }
-
-export {Modal}

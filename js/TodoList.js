@@ -1,9 +1,35 @@
 import {FabricComponent} from './FabricComponent.js';
 const fabricComponent = new FabricComponent();
 
-class TodoList {
+export class TodoList {
   constructor(selector) {
     this.$el = document.querySelector(selector);
+  }
+
+  selectTodo(e) {
+    const target = e.target;
+    const $item = target.closest('.todolist-item');
+
+    if ($item.classList.contains('done')) {
+      return
+    }
+
+    $item.classList.toggle('active');
+  }
+
+  doTodo() {
+    const todolist = document.getElementById('todolist');
+    const $activeTodos = todolist.querySelectorAll(".active");
+
+    $activeTodos.forEach($todo => {
+      const doneTodo = todos.find(todo => todo.id === +$todo.id);
+      $todo.classList.remove('active');
+      $todo.classList.add('done');
+
+      if (doneTodo) {
+        doneTodo.status = true;
+      }
+    })
   }
 
   removeTodo(e, id) {
@@ -35,10 +61,11 @@ class TodoList {
     this.$el.innerHTML = '';
 
     todos.forEach( (todo, i) => {
-      const {id, data} = todo;
+      const {id, data, status} = todo;
+      const done = status ? 'done' : '';
 
       const $item = fabricComponent.createEl('li',
-                                   {className: ['todolist-item'],
+                                   {className: ['todolist-item', `${done}`],
                                     'id': `${id}`
                                    }
                                   );
@@ -56,7 +83,10 @@ class TodoList {
 
       const fieldValues = [i + 1, ...Object.values(data), $button];
 
-      $button.addEventListener('click', (e) => this.removeTodo(e, id))
+      $button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.removeTodo(e, id);
+      })
 
       $item.append($ul);
 
@@ -71,5 +101,3 @@ class TodoList {
     });
   }
 }
-
-export {TodoList}

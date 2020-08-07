@@ -27,10 +27,16 @@ function addListeners() {
     });
 
   document.getElementById('navTodoList')
-    .addEventListener('click', (e) => {
+    .addEventListener('click', e => {
       navTodoList.sortTodoList(e);
       todoList.renderTodoList(todos);
     });
+
+  document.getElementById('todolist')
+    .addEventListener('click', todoList.selectTodo);
+
+  document.getElementById('doneTask')
+    .addEventListener('click', todoList.doTodo)
 }
 
 addListeners();
