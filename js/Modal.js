@@ -96,9 +96,9 @@ class Modal {
           },
           status: false,
         });
-    }
 
-    todoList.renderTodoList(todos);
+      todoList.renderTodoList(todos);
+    }    
   }
 
   _closeModal(e) {
