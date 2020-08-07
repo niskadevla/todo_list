@@ -89,9 +89,12 @@ class Modal {
 
       todos.push({
           id: Date.now(),
-          date: this.#dateToString(new Date()),
-          expdate: this._getExpDate(),
-          title: this._getText()
+          data: {
+            date: this.#dateToString(new Date()),
+            expdate: this._getExpDate(),
+            title: this._getText(),
+          },
+          status: false,
         });
     }
 

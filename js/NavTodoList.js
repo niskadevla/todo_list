@@ -30,19 +30,19 @@ class NavTodoList {
   }
 
   #sortAscendingByDate(key) {
-    todos.sort((a, b) => new Date(a[key]) - new Date(b[key]));
+    todos.sort((a, b) => new Date(a.data[key]) - new Date(b.data[key]));
   }
 
   #sortDescendingByDate(key) {
-    todos.sort((a, b) => new Date(b[key]) - new Date(a[key]));
+    todos.sort((a, b) => new Date(b.data[key]) - new Date(a.data[key]));
   }
 
   #sortAscendingByText(key) {
-    todos.sort((a, b) => a[key] > b[key] ? 1 : -1);
+    todos.sort((a, b) => a.data[key] > b.data[key] ? 1 : -1);
   }
 
   #sortDescendingByText(key) {
-    todos.sort((a, b) => b[key] < a[key] ? -1 : 1);
+    todos.sort((a, b) => b.data[key] < a.data[key] ? -1 : 1);
   }
 
 }

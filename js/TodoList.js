@@ -9,7 +9,7 @@ class TodoList {
   removeTodo(e, id) {
     let target = e.target;
 
-    const i = todos.findIndex(todo => todo.id === id);    
+    const i = todos.findIndex(todo => todo.id === id);
     if (i === undefined) {
       return
     }
@@ -35,7 +35,7 @@ class TodoList {
     this.$el.innerHTML = '';
 
     todos.forEach( (todo, i) => {
-      const {id, date, expdate, title} = todo;
+      const {id, data} = todo;
 
       const $item = fabricComponent.createEl('li',
                                    {className: ['todolist-item'],
@@ -54,7 +54,7 @@ class TodoList {
                                      'x'
                                     );
 
-      const fieldValues = [i + 1, date, expdate, title, $button];
+      const fieldValues = [i + 1, ...Object.values(data), $button];
 
       $button.addEventListener('click', (e) => this.removeTodo(e, id))
 
