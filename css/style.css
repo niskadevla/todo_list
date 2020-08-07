@@ -1,5 +1,6 @@
-.align-center {
-  text-align: center;
+.header-todolist {
+  display: flex;
+  justify-content: center;
 }
 
 .wrap-todolist {
@@ -11,8 +12,14 @@
   padding: 2rem 0;
 }
 
-.btn-success {
-  margin: 1rem auto;
+.btn {
+  text-transform: uppercase;
+}
+
+.btn-success,
+.btn-warning {
+  margin: 1rem;
+  font-weight: bold;
 }
 
 /* .nav {

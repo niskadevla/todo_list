@@ -29,9 +29,7 @@ class Modal {
   }
 
 
-  renderModal() {
-    // const wrapTodolist = document.querySelector('#wrapTodolist');
-    // const div = document.createElement('div');
+  renderModal() {    
     let html = '';
     this._div.innerHTML = '';
     this._div.style.display = 'block';
@@ -98,7 +96,7 @@ class Modal {
         });
 
       todoList.renderTodoList(todos);
-    }    
+    }
   }
 
   _closeModal(e) {
