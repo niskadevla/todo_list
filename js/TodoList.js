@@ -91,9 +91,11 @@ export class TodoList {
       $item.append($ul);
 
       fieldValues.forEach(value => {
+        const $span = elementFabric.createEl('span',{},value);
+
         $ul.append( elementFabric.createEl('li',
                                    {className: ['todo-item', 'col']},
-                                   value
+                                   $span
                                  ));
       });
 
