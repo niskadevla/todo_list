@@ -1,8 +1,8 @@
-export class FabricComponent {
+export class ElementFabric {
 
   createEl(el = '', props = {}, child) {
     const $el = document.createElement(el);
-    
+
     for (let prop in props) {
       if (typeof props[prop] === 'string') {
         $el[prop] = props[prop]

@@ -6,20 +6,6 @@ const todoList = new TodoList('#todolist');
 const navTodoList = new NavTodoList();
 const modal = new Modal('#wrapTodolist');
 
-/*
-  todos = [
-    {
-      id: Date.now(),
-      data: [
-        date: new Date(),
-        expdate: new Date(),
-        title: 'Todo',
-      ],
-      status: false,
-    }
-]
-*/
-
 function addListeners() {
   document.getElementById('newTask')
     .addEventListener('click', () => {
@@ -36,7 +22,7 @@ function addListeners() {
     .addEventListener('click', todoList.selectTodo);
 
   document.getElementById('doneTask')
-    .addEventListener('click', todoList.doTodo)
+    .addEventListener('click', todoList.taskIsDone)
 }
 
 addListeners();

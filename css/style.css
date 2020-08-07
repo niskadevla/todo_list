@@ -48,22 +48,26 @@
 
 .nav-item:first-child,
 .todo-item:first-child {
-  flex: 0 0 8.333333%;
-  max-width: 8.333333%;
+  flex: 0 1 4%;
+  max-width: 4%;
+  justify-content: center;
+  text-align: center;
 }
 
 .nav-item:last-child,
 .todo-item:last-child {
-  flex: 0 0 8.333333%;
-  max-width: 8.333333%;
+  flex: 0 1 5%;
+  max-width: 5%; 
   border-right: 1px solid #ccc;
+  justify-content: center;
+  text-align: center;
 }
 
 .todo-item {
   display: flex;
   align-items: center;
   border-top: none;
-  padding: .5rem;
+  padding: .5rem 1rem;
 }
 
 .nav-link,

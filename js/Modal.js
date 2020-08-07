@@ -18,12 +18,6 @@ export class Modal {
 
     mm = mm.toString().padStart(2, '0');
     dd = dd.toString().padStart(2, '0');
-    // mm = mm.length > 1
-    //   ? mm
-    //   : '0' + mm;
-    // dd = dd.length > 1
-    //   ? dd
-    //   : '0' + dd;
 
     return `${yy}-${mm}-${dd}`;
   }
@@ -41,7 +35,7 @@ export class Modal {
           <div class="modal-header">
             <h3 class="modal-title">Create todo</h3>
             <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
+              <span>&times;</span>
             </button>
           </div>
           <div class="modal-body">

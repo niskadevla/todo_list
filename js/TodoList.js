@@ -1,5 +1,5 @@
-import {FabricComponent} from './FabricComponent.js';
-const fabricComponent = new FabricComponent();
+import {ElementFabric} from './ElementFabric.js';
+const elementFabric = new ElementFabric();
 
 export class TodoList {
   constructor(selector) {
@@ -17,7 +17,7 @@ export class TodoList {
     $item.classList.toggle('active');
   }
 
-  doTodo() {
+  taskIsDone() {
     const todolist = document.getElementById('todolist');
     const $activeTodos = todolist.querySelectorAll(".active");
 
@@ -64,17 +64,17 @@ export class TodoList {
       const {id, data, status} = todo;
       const done = status ? 'done' : '';
 
-      const $item = fabricComponent.createEl('li',
+      const $item = elementFabric.createEl('li',
                                    {className: ['todolist-item', `${done}`],
                                     'id': `${id}`
                                    }
                                   );
 
-      const $ul = fabricComponent.createEl('ul',
+      const $ul = elementFabric.createEl('ul',
                                  {className: ['todo']}
                                 );
 
-      const $button = fabricComponent.createEl('button',
+      const $button = elementFabric.createEl('button',
                                      {className: ['btn', 'btn-danger'],
                                       type: 'button'
                                      },
@@ -91,7 +91,7 @@ export class TodoList {
       $item.append($ul);
 
       fieldValues.forEach(value => {
-        $ul.append( fabricComponent.createEl('li',
+        $ul.append( elementFabric.createEl('li',
                                    {className: ['todo-item', 'col']},
                                    value
                                  ));
