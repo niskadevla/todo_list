@@ -16,12 +16,14 @@ class Modal {
         mm = date.getMonth() + 1,
         dd = date.getDate();
 
-    mm = mm.length > 1
-      ? mm
-      : '0' + mm;
-    dd = dd.length > 1
-      ? dd
-      : '0' + dd;
+    mm = mm.toString().padStart(2, '0');
+    dd = dd.toString().padStart(2, '0');
+    // mm = mm.length > 1
+    //   ? mm
+    //   : '0' + mm;
+    // dd = dd.length > 1
+    //   ? dd
+    //   : '0' + dd;
 
     return `${yy}-${mm}-${dd}`;
   }
