@@ -3,13 +3,16 @@ const todoList = new TodoList('#todolist');
 
 export class Modal {
   constructor(selector) {
-    this.$el = document.querySelector(selector);
-    this._div = document.createElement('div');
+    this.$el = document.querySelector(selector);    
+    this._div = document.getElementById('modal');
     this._saveTask = this._saveTask.bind(this);
     this._closeModal = this._closeModal.bind(this);
     this._getText = this._getText.bind(this);
     this._getExpDate = this._getExpDate.bind(this);
-    this.renderModal = this.renderModal.bind(this);
+    this._cleanInputs = this._cleanInputs.bind(this);
+    this.showModal = this.showModal.bind(this);
+
+    this._addHandlers();
   }
 
   #dateToString(date) {
@@ -23,46 +26,21 @@ export class Modal {
     return `${yy}-${mm}-${dd}`;
   }
 
-
-  renderModal() {
-    let html = '';
-    this._div.innerHTML = '';
-    this._div.style.display = 'block';
-    this._div.classList.add('modal');
-
-    html = `
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title">Create todo</h3>
-            <button type="button" class="close" data-dismiss="modal">
-              <span>&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <input type="text" class="modal-input" placeholder="Your text">
-            <div class="modal-group">
-              <p>Current date:</p>
-              <p><b>${this.#dateToString(new Date())}</b></p>
-            </div>
-            <div class="modal-group">
-              <p>Expiration date:</p>
-              <input type="date" >
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" data-save="modal">Save</button>
-          </div>
-        </div>
-      </div>
-    `;
-
-    this._div.insertAdjacentHTML('afterbegin', html);
-    this.$el.append(this._div);
-
+  _addHandlers = () => {
     this._div.addEventListener('click', this._closeModal);
     this._div.addEventListener('click', this._saveTask);
+  }
+
+
+  showModal() {
+    const $curDate = this._div.querySelector('.current_date');
+    let html = '';
+
+    $curDate.innerHTML = '';
+    this._div.style.display = 'block';
+
+    html = `<b>${this.#dateToString(new Date())}</b>`;
+    $curDate.insertAdjacentHTML('afterbegin', html);
   }
 
   _saveTask(e) {
@@ -76,10 +54,6 @@ export class Modal {
         return
       }
 
-      this._div.style.display = 'none';
-      this._div.removeEventListener('click', this._saveTask);
-      this._div.remove();
-
       todos.push({
           id: Date.now(),
           data: {
@@ -89,6 +63,9 @@ export class Modal {
           },
           status: false,
         });
+
+      this._div.style.display = 'none';
+      this._cleanInputs();
 
       todoList.renderTodoList(todos);
     }
@@ -100,8 +77,7 @@ export class Modal {
 
     if (button && button.dataset.dismiss) {
       this._div.style.display = 'none';
-      this._div.removeEventListener('click', this._closeModal);
-      this._div.remove();
+      this._cleanInputs();
     }
   }
 
@@ -115,6 +91,12 @@ export class Modal {
     const input = this._div.querySelector('input[type="date"]');
 
     return input.value || this.#dateToString(new Date());
+  }
+
+  _cleanInputs() {
+    const $inputs = this._div.querySelectorAll('input');
+
+    $inputs.forEach($input => $input.value = '');
   }
 
 }
